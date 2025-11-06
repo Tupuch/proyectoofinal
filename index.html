@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ConectaTec — Tecnología del Futuro</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  /* ---------- Variables CSS ---------- */
+  :root {
+    --primary: #00aaff;
+    --primary-dark: #0077ff;
+    --secondary: #00ffcc;
+    --accent: #7b42ff;
+    --bg-dark: #00010a;
+    --bg-card: rgba(0, 20, 50, 0.6);
+    --text-light: #e6e6e6;
+    --text-muted: #b8c7e0;
+    --glow-primary: 0 0 15px rgba(0, 170, 255, 0.7);
+    --glow-secondary: 0 0 20px rgba(0, 255, 204, 0.5);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* ---------- Reset y Base ---------- */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+    color: var(--text-light);
+    background: linear-gradient(135deg, #001830 0%, #00010a 100%);
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* ---------- Fondo animado mejorado ---------- */
+  .bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(0, 40, 80, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(0, 120, 255, 0.2) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(0, 200, 255, 0.15) 0%, transparent 50%);
+    animation: gradientShift 15s ease-in-out infinite alternate;
+  }
+
+  @keyframes gradientShift {
+    0% { 
+      background-position: 0% 0%, 100% 100%, 50% 80%;
+    }
+    50% { 
+      background-position: 100% 0%, 0% 100%, 80% 20%;
+    }
+    100% { 
+      background-position: 0% 100%, 100% 0%, 20% 50%;
+    }
+  }
+
+  /* Partículas mejoradas */
+  canvas#particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+  }
+
+  /* ---------- Header mejorado ---------- */
+  header {
+    background: rgba(0, 10, 30, 0.7);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 136, 255, 0.3);
+    text-align: center;
+    padding: 25px 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: headerGlow 3s linear infinite;
+  }
+
+  @keyframes headerGlow {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  h1 {
+    font-family: "Orbitron", sans-serif;
+    color: var(--text-light);
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+  }
+
+  h1::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+    border-radius: 3px;
+  }
+
+  .logo-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 5px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+  }
+
+  /* ---------- Tarjetas mejoradas ---------- */
+  .card {
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    margin: 40px auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 136, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    animation: fadeUp 0.8s ease-out;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 170, 255, 0.05) 0%, transparent 30%, transparent 70%, rgba(0, 255, 204, 0.05) 100%);
+    z-index: -1;
+  }
+
+  .card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--glow-primary);
+  }
+
+  .card h2 {
+    font-family: "Orbitron", sans-serif;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .card h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 2px;
+  }
+
+  /* ---------- Formularios mejoradas ---------- */
+  .form-group {
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-light);
+    outline: none;
+    font-size: 1rem;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  input:focus, select:focus, textarea:focus {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.3);
+    border-color: rgba(0, 170, 255, 0.5);
+    transform: translateY(-2px);
+  }
+
+  /* ---------- Botones mejorados ---------- */
+  .btn {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: none;
+    color: #fff;
+    padding: 14px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3);
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 170, 255, 0.5);
+  }
+
+  .btn:hover::before {
+    left: 100%;
+  }
+
+  .btn-secondary {
+    background: linear-gradient(135deg, var(--secondary) 0%, #00ccaa 100%);
+    color: #003333;
+  }
+
+  .btn-secondary:hover {
+    box-shadow: 0 8px 25px rgba(0, 255, 204, 0.5);
+  }
+
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+  }
+
+  .btn-outline:hover {
+    background: rgba(0, 170, 255, 0.1);
+  }
+
+  /* ---------- Productos mejorados ---------- */
+  .productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+    padding: 0 20px;
+  }
+
+  .producto {
+    background: rgba(0, 30, 70, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 136, 255, 0.2);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    position: relative;
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .producto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 170, 255, 0.05) 0%, transparent 50%);
+    z-index: -1;
+  }
+
+  .producto:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 170, 255, 0.4);
+    border-color: rgba(0, 170, 255, 0.5);
+  }
+
+  .producto-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 136, 255, 0.2);
+    transition: var(--transition);
+  }
+
+  .producto:hover .producto-img {
+    transform: scale(1.05);
+  }
+
+  .producto-content {
+    padding: 20px;
+  }
+
+  .producto h3 {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .producto p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.5;
+  }
+
+  .producto-precio {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+  }
+
+  .producto-precio::before {
+    content: 'Q';
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+
+  /* ---------- Botón carrito mejorado ---------- */
+  #carrito-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    box-shadow: 0 5px 20px rgba(0, 136, 255, 0.5);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 24px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    animation: pulse 2s infinite;
+  }
+
+  #carrito-btn:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 136, 255, 0.7);
+    animation: none;
+  }
+
+  .carrito-count {
+    background: var(--secondary);
+    color: #003333;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  }
+
+  /* ---------- Modales mejorados ---------- */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 30, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal-content {
+    background: rgba(0, 25, 60, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(0, 136, 255, 0.4);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 170, 255, 0.3);
+    animation: scaleIn 0.3s ease;
+    position: relative;
+  }
+
+  @keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .modal-close:hover {
+    color: var(--primary);
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+  }
+
+  .modal-producto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .modal-producto {
+      flex-direction: row;
+    }
+  }
+
+  .modal-producto-img {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    max-height: 300px;
+    transition: var(--transition);
+  }
+
+  .modal-producto-img:hover {
+    transform: scale(1.02);
+  }
+
+  .modal-producto-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .modal-producto-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .modal-producto-info h2 {
+    font-family: "Orbitron", sans-serif;
+    color: var(--text-light);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .producto-detalles {
+    list-style: none;
+  }
+
+  .producto-detalles li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+  }
+
+  .producto-detalles li:hover {
+    color: var(--text-light);
+    transform: translateX(5px);
+  }
+
+  .producto-detalles li:last-child {
+    border-bottom: none;
+  }
+
+  .producto-detalles li i {
+    color: var(--primary);
+    width: 20px;
+  }
+
+  /* ---------- Carrito mejorado ---------- */
+  .carrito-vacio {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+  }
+
+  .carrito-vacio i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+  }
+
+  .carrito-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+
+  .carrito-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+  }
+
+  .carrito-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .carrito-item:last-child {
+    border-bottom: none;
+  }
+
+  .carrito-item-info h4 {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+
+  .carrito-item-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .carrito-item-precio {
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .carrito-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+
+  .carrito-acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .carrito-acciones .btn {
+    flex: 1;
+  }
+
+  /* ---------- Formulario de pago mejorado ---------- */
+  .pago-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  @media (min-width: 576px) {
+    .pago-form {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .pago-form .form-group:nth-child(1),
+    .pago-form .form-group:nth-child(2),
+    .pago-form .form-group:nth-child(3),
+    .pago-form .form-group:nth-child(8) {
+      grid-column: span 2;
+    }
+  }
+
+  .pago-form .form-group.fecha-cvv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* ---------- Mensajes mejorados ---------- */
+  .mensaje {
+    position: fixed;
+    bottom: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 136, 255, 0.9);
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 50px;
+    box-shadow: 0 5px 20px rgba(0, 136, 255, 0.5);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.5s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateX(-50%) translateY(20px);
+    }
+    to {
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  .mensaje.mostrar {
+    opacity: 1;
+  }
+
+  .mensaje i {
+    font-size: 1.2rem;
+  }
+
+  /* ---------- Footer mejorado ---------- */
+  footer {
+    background: rgba(0, 10, 30, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(0, 136, 255, 0.2);
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  /* ---------- Utilidades ---------- */
+  .hidden { 
+    display: none !important; 
+  }
+  
+  .text-center { text-align: center; }
+  .mt-20 { margin-top: 20px; }
+  .mb-20 { margin-bottom: 20px; }
+
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+    
+    .productos {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    .modal-content {
+      width: 95%;
+      padding: 20px;
+    }
+    
+    #carrito-btn {
+      bottom: 15px;
+      right: 15px;
+      padding: 14px 20px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="bg-animation"></div>
+<canvas id="particles"></canvas>
+
+<header>
+  <h1>ConectaTec</h1>
+  <p class="logo-subtitle">TECNOLOGÍA AVANZADA | DISEÑO FUTURISTA</p>
+</header>
+
+<!-- Login -->
+<section id="login-section" class="card fade-in">
+  <h2>Inicio de Sesión</h2>
+  <div class="form-group">
+    <label for="usuario">Usuario</label>
+    <input type="text" id="usuario" placeholder="Ingresa tu usuario" />
+  </div>
+  <div class="form-group">
+    <label for="contrasena">Contraseña</label>
+    <input type="password" id="contrasena" placeholder="Ingresa tu contraseña" />
+  </div>
+  <button class="btn" onclick="login()">
+    <i class="fas fa-sign-in-alt"></i> Entrar al Sistema
+  </button>
+  <p class="text-center mt-20">Usuario: alumno | Contraseña: 2025</p>
+</section>
+
+<!-- Tienda -->
+<section id="tienda-section" class="hidden">
+  <div class="card">
+    <h2>Catálogo de Productos</h2>
+    <p class="text-center">Descubre nuestra selección de tecnología de vanguardia</p>
+  </div>
+  <div class="productos" id="lista-productos"></div>
+</section>
+
+<!-- Carrito - AHORA ESTÁ OCULTO INICIALMENTE Y SOLO SE MUESTRA EN LA TIENDA -->
+<button id="carrito-btn" class="hidden" onclick="abrirCarrito()">
+  <i class="fas fa-shopping-cart"></i>
+  <span>Carrito</span>
+  <span class="carrito-count">0</span>
+</button>
+
+<!-- Modales -->
+<div id="modal-producto" class="modal" onclick="cerrarAlExterior(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="cerrarModal('modal-producto')">
+      <i class="fas fa-times"></i>
+    </button>
+    <div id="contenido-modal"></div>
+  </div>
+</div>
+
+<div id="modal-carrito" class="modal" onclick="cerrarCarritoExterior(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="cerrarModal('modal-carrito')">
+      <i class="fas fa-times"></i>
+    </button>
+    <div id="contenido-carrito"></div>
+  </div>
+</div>
+
+<div id="mensaje" class="mensaje"></div>
+
+<footer>
+  <p>© 2025 ConectaTec | Tecnología y estilo futurista. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+/* ---------- Partículas animadas mejoradas ---------- */
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w, h;
+let particles = [];
+
+function resize() {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+function initParticles(count = 100) {
+  particles = [];
+  for (let i = 0; i < count; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 2 + 0.5,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5,
+      color: `rgba(0, ${170 + Math.random() * 85}, 255, ${0.3 + Math.random() * 0.5})`
+    });
+  }
+}
+initParticles();
+
+function drawParticles() {
+  ctx.clearRect(0, 0, w, h);
+  
+  // Dibujar conexiones entre partículas
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance < 100) {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(0, 170, 255, ${0.1 * (1 - distance/100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+  
+  // Dibujar partículas
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    
+    p.x += p.dx;
+    p.y += p.dy;
+    
+    if (p.x < 0 || p.x > w) p.dx *= -1;
+    if (p.y < 0 || p.y > h) p.dy *= -1;
+  });
+  
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+/* ---------- Lógica de la tienda ---------- */
+const productos = {
+  audifonos: {
+    nombre: "Audífonos ConectaTec SoundPlus",
+    precio: 120,
+    img: "audifonos.jpg",
+    detalles: [
+      "Marca: ConectaTec Audio",
+      "Conexión por cable de 3.5mm | Diámetro de driver: 40mm",
+      "Almohadillas suaves de espuma con memoria",
+      "Compatibilidad universal con PC, laptop y móviles",
+      "Diseño plegable para fácil transporte y almacenamiento"
+    ]
+  },
+  teclado: {
+    nombre: "Teclado ConectaTec Office Pro",
+    precio: 150,
+    img: "teclado.jpg",
+    detalles: [
+      "Marca: ConectaTec Office",
+      "Diseño ergonómico para uso prolongado",
+      "Teclas silenciosas de membrana | Conexión USB",
+      "Teclado numérico completo incluido",
+      "Compatibilidad con Windows, Mac y Linux"
+    ]
+  },
+  mouse: {
+    nombre: "Mouse ConectaTec ErgoFit",
+    precio: 80,
+    img: "mouse.jpg",
+    detalles: [
+      "Marca: ConectaTec Office",
+      "Sensor óptico de 1200 DPI | Conexión USB",
+      "Diseño ergonómico para diestros",
+      "Scroll suave y preciso | 3 botones estándar",
+      "Compatible con Windows, Mac y Linux"
+    ]
+  },
+  smartwatch: {
+    nombre: "Smartwatch ConectaTec X1 Elite",
+    precio: 600,
+    img: "smartwach.jpg",
+    detalles: [
+      "Pantalla AMOLED 1.4” táctil | Resistencia IP68",
+      "Monitoreo cardíaco 24/7 con alertas",
+      "Batería de 7 días en uso normal",
+      "Compatible con Android/iOS",
+      "GPS integrado | Notificaciones inteligentes"
+    ]
+  },
+  camara: {
+    nombre: "Cámara Profesional ConectaTec ProShot",
+    precio: 5200,
+    img: "camara.jpg",
+    detalles: [
+      "Marca: ConectaTec Imaging",
+      "Sensor Full Frame de 35mm - 24.2 MP",
+      "Grabación de video 4K UHD a 60fps",
+      "Sistema de enfoque automático híbrido de 759 puntos",
+      "Estabilización de imagen óptica de 5 ejes"
+    ]
+  }
+};
+
+let carrito = [];
+let numeroOrden = 1000; // Número base para las órdenes
+
+function generarNumeroOrden() {
+  numeroOrden++;
+  return `ORD-${numeroOrden}`;
+}
+
+window.onload = () => {
+  const contenedor = document.getElementById("lista-productos");
+  for (let key in productos) {
+    const p = productos[key];
+    let descripcionCorta = p.detalles[0];
+    
+    // Descripciones cortas personalizadas para cada producto
+    if (key === 'audifonos') {
+      descripcionCorta = 'Audífonos con cable | Almohadillas cómodas | Sonido claro';
+    } else if (key === 'teclado') {
+      descripcionCorta = 'Teclado ergonómico | Teclas silenciosas | USB';
+    } else if (key === 'mouse') {
+      descripcionCorta = 'Mouse óptico | 1200 DPI | Diseño ergonómico';
+    } else if (key === 'camara') {
+      descripcionCorta = 'Sensor Full Frame - Video 4K 60fps - ConectaTec Imaging';
+    } else if (key === 'smartwatch') {
+      descripcionCorta = 'Smartwatch avanzado | Monitoreo de salud | 7 días de batería';
+    }
+    
+    contenedor.innerHTML += `
+      <div class="producto" onclick="abrirModal('${key}')">
+        <img src="${p.img}" alt="${p.nombre}" class="producto-img">
+        <div class="producto-content">
+          <h3>${p.nombre}</h3>
+          <p>${descripcionCorta}</p>
+          <div class="producto-precio">${p.precio}</div>
+        </div>
+      </div>`;
+  }
+};
+
+function login() {
+  const usuario = document.getElementById("usuario").value;
+  const contrasena = document.getElementById("contrasena").value;
+  if (usuario === "alumno" && contrasena === "2025") {
+    document.getElementById("login-section").classList.add("hidden");
+    document.getElementById("tienda-section").classList.remove("hidden");
+    // EL BOTÓN DEL CARRITO SOLO SE MUESTRA CUANDO ESTÁS EN LA TIENDA
+    document.getElementById("carrito-btn").classList.remove("hidden");
+    mostrarMensaje("✅ ¡Bienvenido a ConectaTec!");
+  } else {
+    mostrarMensaje("❌ Usuario o contraseña incorrectos");
+  }
+}
+
+function abrirModal(nombre) {
+  const p = productos[nombre];
+  const modal = document.getElementById("modal-producto");
+  const contenido = document.getElementById("contenido-modal");
+  contenido.innerHTML = `
+    <div class="modal-producto">
+      <div class="modal-producto-img">
+        <img src="${p.img}" alt="${p.nombre}">
+      </div>
+      <div class="modal-producto-info">
+        <h2>${p.nombre}</h2>
+        <ul class="producto-detalles">
+          ${p.detalles.map(d => `<li><i class="fas fa-check"></i> ${d}</li>`).join("")}
+        </ul>
+        <div class="producto-precio">${p.precio}</div>
+        <button class="btn" onclick="agregarCarrito('${nombre}')">
+          <i class="fas fa-cart-plus"></i> Agregar al Carrito
+        </button>
+      </div>
+    </div>`;
+  modal.style.display = "flex";
+}
+
+function agregarCarrito(nombre) {
+  carrito.push(productos[nombre]);
+  actualizarCarrito();
+  mostrarMensaje(`✅ ${productos[nombre].nombre} agregado al carrito`);
+  cerrarModal('modal-producto');
+}
+
+function actualizarCarrito() {
+  document.querySelector(".carrito-count").innerText = carrito.length;
+}
+
+function abrirCarrito() {
+  const modal = document.getElementById("modal-carrito");
+  const contenido = document.getElementById("contenido-carrito");
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+  
+  if (carrito.length === 0) {
+    contenido.innerHTML = `
+      <div class="carrito-vacio">
+        <i class="fas fa-shopping-cart"></i>
+        <h3>Tu carrito está vacío</h3>
+        <p>Agrega algunos productos para continuar</p>
+      </div>`;
+  } else {
+    contenido.innerHTML = `
+      <h2><i class="fas fa-shopping-cart"></i> Carrito de Compras</h2>
+      <div class="carrito-items">
+        ${carrito.map((p, index) => `
+          <div class="carrito-item">
+            <div class="carrito-item-info">
+              <h4>${p.nombre}</h4>
+              <p>${p.detalles[0]}</p>
+            </div>
+            <div class="carrito-item-precio">Q${p.precio}</div>
+          </div>
+        `).join("")}
+      </div>
+      <div class="carrito-total">
+        <span>Total:</span>
+        <span>Q${total}</span>
+      </div>
+      <div class="carrito-acciones">
+        <button class="btn btn-outline" onclick="vaciarCarrito()">
+          <i class="fas fa-trash"></i> Vaciar Carrito
+        </button>
+        <button class="btn" onclick="procesarPago()">
+          <i class="fas fa-credit-card"></i> Proceder al Pago
+        </button>
+      </div>`;
+  }
+  modal.style.display = "flex";
+}
+
+function vaciarCarrito() {
+  carrito = [];
+  actualizarCarrito();
+  cerrarModal('modal-carrito');
+  mostrarMensaje("🗑️ Carrito vaciado");
+}
+
+function procesarPago() {
+  if (carrito.length === 0) {
+    mostrarMensaje("❌ El carrito está vacío");
+    return;
+  }
+  
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+  const contenido = document.getElementById("contenido-carrito");
+  
+  contenido.innerHTML = `
+    <h2><i class="fas fa-credit-card"></i> Finalizar Compra</h2>
+    <div class="pago-form">
+      <div class="form-group">
+        <label for="nombre-completo">Nombre Completo *</label>
+        <input type="text" id="nombre-completo" placeholder="Juan Pérez García" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Correo Electrónico *</label>
+        <input type="email" id="email" placeholder="juan.perez@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono *</label>
+        <input type="tel" id="telefono" placeholder="+502 1234 5678" required>
+      </div>
+      <div class="form-group">
+        <label for="direccion">Dirección de Envío *</label>
+        <textarea id="direccion" placeholder="Calle, número, colonia, ciudad, departamento" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="tarjeta">Número de Tarjeta *</label>
+        <input type="text" id="tarjeta" placeholder="1234 5678 9012 3456" maxlength="19" required>
+      </div>
+      <div class="form-group">
+        <label for="nombre-tarjeta">Nombre en la Tarjeta *</label>
+        <input type="text" id="nombre-tarjeta" placeholder="JUAN PEREZ" required>
+      </div>
+      <div class="form-group fecha-cvv">
+        <div>
+          <label for="fecha-vencimiento">Fecha Vencimiento *</label>
+          <input type="text" id="fecha-vencimiento" placeholder="MM/AA" maxlength="5" required>
+        </div>
+        <div>
+          <label for="cvv">CVV *</label>
+          <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+        </div>
+      </div>
+      <div class="carrito-total">
+        <span>Total a Pagar:</span>
+        <span>Q${total}</span>
+      </div>
+      <div class="carrito-acciones">
+        <button class="btn btn-outline" onclick="abrirCarrito()">
+          <i class="fas fa-arrow-left"></i> Volver al Carrito
+        </button>
+        <button class="btn" onclick="confirmarPago()">
+          <i class="fas fa-lock"></i> Confirmar Compra
+        </button>
+      </div>
+    </div>`;
+}
+
+function confirmarPago() {
+  // Obtener datos del formulario
+  const nombreCompleto = document.getElementById("nombre-completo").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const direccion = document.getElementById("direccion").value.trim();
+  const tarjeta = document.getElementById("tarjeta").value;
+  const nombreTarjeta = document.getElementById("nombre-tarjeta").value.trim();
+  const fecha = document.getElementById("fecha-vencimiento").value;
+  const cvv = document.getElementById("cvv").value;
+
+  // Validaciones MUY SIMPLES - solo que no estén vacíos
+  if (!nombreCompleto || !email || !telefono || !direccion || !tarjeta || !nombreTarjeta || !fecha || !cvv) {
+    mostrarMensaje("❌ Completa todos los campos obligatorios (*)");
+    return;
+  }
+
+  // SI PASA LAS VALIDACIONES, CONFIRMAR COMPRA
+  const total = carrito.reduce((acc, p) => acc + p.precio, 0);
+  const numeroOrden = generarNumeroOrden();
+  
+  // Limpiar carrito y mostrar confirmación
+  carrito = [];
+  actualizarCarrito();
+  cerrarModal('modal-carrito');
+  
+  // Mostrar mensaje de COMPRA REALIZADA con número de orden
+  mostrarMensaje(`✅ ¡COMPRA REALIZADA EXITOSAMENTE! Número de Orden: ${numeroOrden}`);
+  
+  // Mensaje adicional después de un tiempo
+  setTimeout(() => {
+    mostrarMensaje("📧 Se ha enviado un correo de confirmación a: " + email);
+  }, 4000);
+}
+
+function cerrarModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+function cerrarAlExterior(event) {
+  if (event.target === document.getElementById('modal-producto')) {
+    cerrarModal('modal-producto');
+  }
+}
+
+function cerrarCarritoExterior(event) {
+  if (event.target === document.getElementById('modal-carrito')) {
+    cerrarModal('modal-carrito');
+  }
+}
+
+function mostrarMensaje(texto) {
+  const mensaje = document.getElementById("mensaje");
+  mensaje.innerHTML = `<i class="fas fa-info-circle"></i> ${texto}`;
+  mensaje.classList.add("mostrar");
+  setTimeout(() => {
+    mensaje.classList.remove("mostrar");
+  }, 4000);
+}
+</script>
+</body>
+</html>
